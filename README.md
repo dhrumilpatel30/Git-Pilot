@@ -8,4 +8,4 @@
 ### Features
 
 #### See All Branch Status with suggestions
-<img width="1407" alt="image" src="https://github.com/user-attachments/assets/2ab3cb96-1691-4e73-9a11-307b7462c2b7">
+<img width="1407" alt="image" src="https://github.com/user-attachments/assets/70f1daaa-9a98-44c4-b7c0-a65f83891dd3">
