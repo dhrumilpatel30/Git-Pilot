@@ -14,7 +14,7 @@ var branchName string
 
 var branchCmd = &cobra.Command{
 	Use:   "branch-status",
-	Short: "Display the status of a branch",
+	Short: "Displays the status of a branch",
 	Run: func(cmd *cobra.Command, args []string) {
 		repo, err := git.PlainOpen(".")
 		if err != nil {
@@ -45,11 +45,14 @@ var branchCmd = &cobra.Command{
 			log.Fatal(err)
 		}
 
-		iter.ForEach(func(c *object.Commit) error {
+		err = iter.ForEach(func(c *object.Commit) error {
 			fmt.Printf("Commit: %s\nAuthor: %s\nDate: %s\nMessage: %s\n\n",
 				c.Hash, c.Author.Name, c.Author.When, c.Message)
 			return nil
 		})
+		if err != nil {
+			return
+		}
 
 		fmt.Println("\nRemote Status:")
 		remotes, err := repo.Remotes()
@@ -82,7 +85,10 @@ var branchCmd = &cobra.Command{
 		out, err := mergeCmd.CombinedOutput()
 		if err != nil {
 			fmt.Printf("Merge conflicts detected:\n%s\n", string(out))
-			exec.Command("git", "merge", "--abort").Run()
+			err := exec.Command("git", "merge", "--abort").Run()
+			if err != nil {
+				return
+			}
 		} else {
 			fmt.Println("No merge conflicts detected.")
 		}

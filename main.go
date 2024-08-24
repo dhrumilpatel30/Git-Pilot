@@ -1,6 +1,6 @@
 package main
 
-import "gitpilot/cmd"
+import "git-pilot/cmd"
 
 func main() {
 	cmd.Execute()

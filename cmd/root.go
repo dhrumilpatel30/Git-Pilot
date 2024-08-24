@@ -7,7 +7,7 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "gitpilot",
+	Use:   "git-pilot",
 	Short: "GitPilot: A CLI tool to enhance your Git workflow",
 	Long:  `GitPilot is a CLI tool designed to help you manage Git branches, track remote status, and handle merge conflicts more effectively.`,
 	Run: func(cmd *cobra.Command, args []string) {
