@@ -1,0 +1,34 @@
+# Binaries
+gitpilot
+*.exe
+*.out
+*.dll
+*.so
+*.dylib
+
+# Vendor directory (if you use vendoring)
+vendor/
+
+# Go dependency files
+go.sum
+
+# Testing
+*.test
+
+# Logs
+*.log
+
+# IDE/Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Go workspace file
+go.work
