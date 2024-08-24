@@ -27,12 +27,12 @@ var branchCmd = &cobra.Command{
 		}
 
 		branchRef, err := repo.Branch(branchName)
-		branchHash := plumbing.ReferenceName("refs/heads/" + branchRef.Name)
-		ref, err := repo.Reference(branchHash, true)
 		if err != nil {
 			log.Fatal(err)
 		}
 
+		branchHash := plumbing.ReferenceName("refs/heads/" + branchRef.Name)
+		ref, err := repo.Reference(branchHash, true)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -63,7 +63,7 @@ var branchCmd = &cobra.Command{
 		for _, remote := range remotes {
 			fmt.Printf("Remote: %s\n", remote.String())
 
-			refName := fmt.Sprintf("refs/remotes/%s/%s", remote.String(), branchName)
+			refName := fmt.Sprintf("refs/remotes/origin/%s", branchName)
 			ref, err := repo.Reference(plumbing.ReferenceName(refName), true)
 			if err != nil {
 				fmt.Printf("Remote branch '%s' does not exist.\n", branchName)
@@ -87,7 +87,7 @@ var branchCmd = &cobra.Command{
 			fmt.Printf("Merge conflicts detected:\n%s\n", string(out))
 			err := exec.Command("git", "merge", "--abort").Run()
 			if err != nil {
-				return
+				log.Fatal(err)
 			}
 		} else {
 			fmt.Println("No merge conflicts detected.")
